@@ -547,6 +547,8 @@ export interface NextConfig extends Record<string, any> {
   /** @see [Including non-page files in the pages directory](https://nextjs.org/docs/api-reference/next.config.js/custom-page-extensions) */
   pageExtensions?: string[]
 
+  clientExtensions?: string[]
+
   /** @see [Compression documentation](https://nextjs.org/docs/api-reference/next.config.js/compression) */
   compress?: boolean
 
@@ -778,6 +780,7 @@ export const defaultConfig: NextConfig = {
   generateBuildId: () => null,
   generateEtags: true,
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  clientExtensions: [],
   poweredByHeader: true,
   compress: true,
   analyticsId: process.env.VERCEL_ANALYTICS_ID || '', // TODO: remove in the next major version

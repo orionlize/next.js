@@ -798,7 +798,25 @@ export default async function getBaseWebpackConfig(
     config.experimental.externalDir || !!config.transpilePackages
 
   const codeCondition = {
-    test: { or: [/\.(tsx|ts|js|cjs|mjs|jsx)$/, /__barrel_optimize__/] },
+    test: {
+      or: [
+        new RegExp(
+          `\\.(${Array.from(
+            new Set(
+              config.clientExtensions.concat([
+                'tsx',
+                'ts',
+                'js',
+                'cjs',
+                'mjs',
+                'jsx',
+              ])
+            )
+          ).join('|')})$`
+        ),
+        /__barrel_optimize__/,
+      ],
+    },
     ...(shouldIncludeExternalDirs
       ? // Allowing importing TS/TSX files from outside of the root dir.
         {}
